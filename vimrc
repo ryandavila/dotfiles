@@ -81,18 +81,11 @@ endif
 " Use two spaces in yaml files
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" python support
-let python_highlight_all = 1
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
+"find new python support
+
 " javascript support
 let javascript_enable_domhtmlcss = 1
+
 " ocaml support
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
