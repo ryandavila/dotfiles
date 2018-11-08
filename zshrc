@@ -34,4 +34,45 @@ fi
 # rvm configuration
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+#aliases
+alias reload='exec $SHELL -l'
+alias vi='vim'
+
+function mkcd
+{
+  dir="$*";
+  mkdir -p "$dir" && cd "$dir";
+}
+
+_SYSTEM_RM=`whereis rm`
+function rm() {
+    ORIGINAL_ARGS=("$@")
+    TO_TRASH=true
+    VERBOSITY=false
+    while getopts ":if" opt; do
+        case "$opt" in
+            f)
+                TO_TRASH=false
+                ;;
+            i)
+                VERBOSITY=true
+                ;;
+        esac
+    done
+    shift $((OPTIND-1))
+    if [ "$TO_TRASH" = true ]; then
+        if [ "$VERBOSITY" = true ]; then
+            mv -v "$@" ~/.Trash
+        else
+            mv "$@" ~/.Trash
+        fi
+    else
+        $_SYSTEM_RM $ORIGINAL_ARGS
+    fi
+}
+
+
 fortune | pokemonsay
+# fortune | say & disown
+
