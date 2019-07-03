@@ -41,6 +41,20 @@ alias reload='exec $SHELL -l'
 alias vi='vim'
 alias jn='jupyter notebook'
 alias ...='cd ../..'
+alias vstart='source venv/bin/activate; source .env; python app.py'
+
+alias ga='git add'
+alias gaa='git add .'
+alias gaaa='git add -A'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gd='git diff'
+alias gi='git init'
+alias gl='git log'
+alias gp='git pull'
+alias gpsh='git push'
+alias gss='git status -s'
+alias gdpckg="git diff --ignore-all-space --ignore-space-at-eol --ignore-space-change --ignore-blank-lines -- . ':(exclude)*package-lock.json' -- . ':(exclude)*yarn.lock'"
 
 function mkcd {
   dir="$*";
