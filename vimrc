@@ -2,7 +2,6 @@ set nocompatible
 filetype off
 
 call plug#begin()
-Plug 'gmarik/Vundle.vim'
 Plug 'hdima/python-syntax'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
@@ -17,7 +16,7 @@ Plug 'groenewege/vim-less'
 Plug 'tpope/vim-liquid'
 Plug 'darfink/vim-plist'
 Plug 'tpope/vim-surround'
-Plug 'bronson/vim-trailing-whitespace'
+"Plug 'bronson/vim-trailing-whitespace'
 Plug 'vim-scripts/DrawIt'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -40,7 +39,7 @@ set wildignore=*.o,*~,*.pyc,*.class,*.byte " Ignore compiled files
 set backspace=indent,eol,start " Fix problem with backspace key
 set mouse=a         " Allow using mouse
 
-set number          " Show line numbers
+set number relativenumber " Show line numbers
 set scrolloff=3     " Start scrolling before the reaching borders
 
 set autoindent      " Enable auto-indenting
@@ -58,8 +57,8 @@ set hlsearch        " Highlight searches
 set ignorecase      " Ignore case in searches
 set wrapscan        " Automatically search from bottom once bottom is reached
 
-colorscheme onedark " Use default colors
-let g:airline_theme='onedark'
+colorscheme default " Use default colors
+let g:airline_theme='dark'
 
 set cursorline      " Highlight current line
 highlight Comment ctermfg=DarkGrey
@@ -95,6 +94,10 @@ cnoreabbrev wQ wq
 " Keep visual selection when (un)indenting
 vnoremap < <gv
 vnoremap > >gv
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 " Use w!! to write if file requires sudo permissions
 cmap w!! w !sudo tee > /dev/null %

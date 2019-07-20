@@ -53,7 +53,7 @@ alias gi='git init'
 alias gl='git log'
 alias gp='git pull'
 alias gpsh='git push'
-alias gss='git status -s'
+alias gss='git status'
 alias gdpckg="git diff --ignore-all-space --ignore-space-at-eol --ignore-space-change --ignore-blank-lines -- . ':(exclude)*package-lock.json' -- . ':(exclude)*yarn.lock'"
 
 function mkcd {
