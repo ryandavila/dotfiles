@@ -82,18 +82,14 @@ set timeoutlen=1000 " Set mapping delay timeout
 set ttimeoutlen=0   " Set key code delay timeout
 " Prevent Ex Mode
 map Q <Nop>
-" Make it easier on the fingers
-inoremap <C-c> <Esc>
 " Spell check in one keystroke
 MapToggle <leader>ss spell
 " Paste mode in one keystroke
 MapToggle <leader>pp paste
-" Abbreviations for typos
-cnoreabbrev Wq wq
-cnoreabbrev wQ wq
 " Keep visual selection when (un)indenting
 vnoremap < <gv
 vnoremap > >gv
+" Unmap arrow keys to do me some learnin'
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
