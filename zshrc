@@ -140,6 +140,14 @@ group_lazy_load "$HOME/.pyenv/init.zsh" pyenv python python3 pip pip3 jupyter
 
 unset -f group_lazy_load
 
-fortune | pokemonsay
-# fortune | say & disown
+export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 
+alias java8='export JAVA_HOME=$JAVA_8_HOME'
+alias java11='export JAVA_HOME=$JAVA_11_HOME'
+
+java11
+
+# fortune | pokemonsay
+# fortune | say & disown
+fortune | cowsay -f $(ls /usr/local/Cellar/cowsay/3.04/share/cows/ | shuf -n 1) | lolcat
