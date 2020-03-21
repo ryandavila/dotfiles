@@ -39,6 +39,9 @@ complete -d cd
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+alias vi=vim
+alias ...='cd ../..'
+
 function prompt_command {
     exitstatus="$?"
 

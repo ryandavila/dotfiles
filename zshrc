@@ -22,21 +22,16 @@ export EDITOR=vim
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-PS1="%{\$PROMPT_SUCCESS_COLOR%}% [%D{%H:%M:%S}] %{\$reset_color%}% $PS1"
+PS1="%{\$PROMPT_SUCCESS_COLOR%}% %{\$reset_color%}% $PS1"
 
 # Customize to your needs...
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:$HOME/Library/bin:$PATH"
-
-# Source aliases from another file
-if [[ -e $HOME/.zsh_aliases.zsh ]]; then
-    source $HOME/.zsh_aliases.zsh
-fi
 
 # rvm configuration
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-#aliases
+# Aliases
 alias reload='exec $SHELL -l'
 alias vi='vim'
 alias jn='jupyter notebook'
@@ -48,13 +43,7 @@ alias gaa='git add .'
 alias gaaa='git add -A'
 alias gc='git commit'
 alias gcm='git commit -m'
-alias gd='git diff'
-alias gi='git init'
-alias gl='git log'
-alias gp='git pull'
-alias gpsh='git push'
 alias gss='git status'
-alias gdpckg="git diff --ignore-all-space --ignore-space-at-eol --ignore-space-change --ignore-blank-lines -- . ':(exclude)*package-lock.json' -- . ':(exclude)*yarn.lock'"
 
 function mkcd {
   dir="$*";
@@ -90,7 +79,6 @@ alias rm=safe_rm
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
 
 ################################################################################
 # Lazy loading language specific environments (speed up zsh load)
@@ -135,7 +123,7 @@ group_lazy_load "$HOME/.opam/opam-init/init.zsh" opam ocaml utop
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-#group_lazy_load "$HOME/.pyenv/init.zsh" pyenv python python3 pip pip3
+
 group_lazy_load "$HOME/.pyenv/init.zsh" pyenv python python3 pip pip3 jupyter
 
 unset -f group_lazy_load
@@ -145,8 +133,6 @@ export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 
 alias java8='export JAVA_HOME=$JAVA_8_HOME'
 alias java11='export JAVA_HOME=$JAVA_11_HOME'
-
-java11
 
 # fortune | pokemonsay
 # fortune | say & disown
