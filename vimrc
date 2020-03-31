@@ -1,4 +1,8 @@
 set nocompatible
+set exrc
+set noswapfile
+set incsearch
+
 filetype off
 
 call plug#begin()
@@ -16,11 +20,10 @@ Plug 'groenewege/vim-less'
 Plug 'tpope/vim-liquid'
 Plug 'darfink/vim-plist'
 Plug 'tpope/vim-surround'
-"Plug 'bronson/vim-trailing-whitespace'
 Plug 'vim-scripts/DrawIt'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --js-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --js-completer --java-completer' }
 Plug 'joshdick/onedark.vim'
 call plug#end()
 
@@ -29,8 +32,6 @@ filetype plugin indent on
 set ttyfast         " Enable on fast terminal connection (local)
 set lazyredraw      " Buffer redraws
 set noerrorbells    " Disable annoying error tone
-set novisualbell    " Disable annoying visual error
-"set belloff=all     " Actually disable bell tone
 
 set laststatus=2    " Show status line on all windows, not just on splits
 set wildmenu        " Autocompletion menu
@@ -60,32 +61,12 @@ set wrapscan        " Automatically search from bottom once bottom is reached
 colorscheme default " Use default colors
 let g:airline_theme='dark'
 
-set cursorline      " Highlight current line
-highlight Comment ctermfg=DarkGrey
-highlight CursorLine cterm=none ctermfg=none ctermbg=none
-highlight LineNr cterm=none ctermfg=Brown ctermbg=none
-highlight CursorLineNr cterm=none ctermfg=Cyan ctermbg=none
-highlight Pmenu cterm=none ctermfg=15 ctermbg=52
-highlight PmenuSel cterm=bold ctermfg=255 ctermbg=234
-
-" Map key to toggle opt
-function! MapToggle(key, opt)
-    let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
-    exec 'nnoremap '.a:key.' '.cmd
-    exec 'inoremap '.a:key." \<C-O>".cmd
-endfunction
-command! -nargs=+ MapToggle call MapToggle(<f-args>)
-
 " Key Mappings
 " ==================
 set timeoutlen=1000 " Set mapping delay timeout
 set ttimeoutlen=0   " Set key code delay timeout
 " Prevent Ex Mode
 map Q <Nop>
-" Spell check in one keystroke
-MapToggle <leader>ss spell
-" Paste mode in one keystroke
-MapToggle <leader>pp paste
 " Keep visual selection when (un)indenting
 vnoremap < <gv
 vnoremap > >gv

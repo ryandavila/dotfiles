@@ -39,8 +39,54 @@ complete -d cd
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-alias vi=vim
+# Aliases
 alias ...='cd ../..'
+alias ..='cd ..'
+alias vi=vim
+alias l='ls -lF'
+alias rm='rm -i'
+
+alias ga='git add'
+alias gaa='git add .'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gss='git status'
+
+alias valgrind='valgrind --trace-children=yes --read-var-info=yes --sigill-diagnostics=yes --leak-check=full --show-leak-kinds=all'
+
+function rm() {
+    if [ "$#" -eq "1" ]; then
+        return
+    fi
+    DIR=~/.trash/"$(date +'%c')"
+    DIR=${DIR// /_}
+    mkdir -p $DIR
+    mv "$@" $DIR
+
+    /bin/rm -f ~/.trash/latest
+    ln -s $DIR ~/.trash/latest
+}
+
+if [ "$(uname)" == "Darwin" ]; then
+# Do something under Mac OS X platform
+alias ls='ls -G' # enable color support in ls
+
+else
+# Do something under GNU/Linux platform
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+fi
 
 function prompt_command {
     exitstatus="$?"
@@ -71,7 +117,7 @@ function prompt_command {
 
     window_title="\[\e]0;\W\a\]"
     current_time="[\t] "
-    prompt="${window_title}${OFF}${CYAN}${current_time}${OFF}\u@\h: ${CYAN}\w${OFF}${branch}"
+    prompt="${window_title}${OFF}${CYAN}${OFF}\u@\h: ${CYAN}\w${OFF}${branch}"
 
     if [ ${exitstatus} -eq 0 ]; then
         PS1="${prompt} ${GREEN}> ${OFF}${YELLOW}${BOLD}"
@@ -87,10 +133,6 @@ PROMPT_COMMAND=prompt_command
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
