@@ -40,10 +40,11 @@ alias vstart='source venv/bin/activate; source .env; python app.py'
 
 alias ga='git add'
 alias gaa='git add .'
-alias gaaa='git add -A'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gss='git status'
+
+alias corona='curl -s https://corona-stats.online/us'
 
 function mkcd {
   dir="$*";
@@ -134,6 +135,6 @@ export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 alias java8='export JAVA_HOME=$JAVA_8_HOME'
 alias java11='export JAVA_HOME=$JAVA_11_HOME'
 
-# fortune | pokemonsay
+fortune | pokemonsay
 # fortune | say & disown
-fortune | cowsay -f $(ls /usr/local/Cellar/cowsay/3.04/share/cows/ | shuf -n 1) | lolcat
+# fortune | cowsay -f $(ls /usr/local/Cellar/cowsay/3.04/share/cows/ | shuf -n 1) | lolcat
