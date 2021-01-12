@@ -44,7 +44,12 @@ alias gc='git commit'
 alias gcm='git commit -m'
 alias gss='git status'
 
-alias corona='curl -s https://corona-stats.online/us'
+alias pg-start="pg_ctl -D /usr/local/var/postgres start"
+alias pg-stop="pg_ctl -D /usr/local/var/postgres stop"
+alias pg-restart="pg_ctl -D /usr/local/var/postgres restart"
+
+alias corona='curl -s https://corona-stats.online/'
+alias corona-us='curl -s https://corona-stats.online/states/us'
 
 function mkcd {
   dir="$*";

@@ -44,28 +44,20 @@ alias ...='cd ../..'
 alias ..='cd ..'
 alias vi=vim
 alias l='ls -lF'
-alias rm='rm -i'
 
 alias ga='git add'
 alias gaa='git add .'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gss='git status'
+alias gk='gitk --all'
 
-alias valgrind='valgrind --trace-children=yes --read-var-info=yes --sigill-diagnostics=yes --leak-check=full --show-leak-kinds=all'
+alias pgstart='pg_ctl -D /usr/local/var/postgres start'
+alias pgstop='pg_ctl -D /usr/local/var/postgres stop'
 
-function rm() {
-    if [ "$#" -eq "1" ]; then
-        return
-    fi
-    DIR=~/.trash/"$(date +'%c')"
-    DIR=${DIR// /_}
-    mkdir -p $DIR
-    mv "$@" $DIR
+alias corona='curl -s https://corona-stats.online?top=25'
+alias corona-us='curl -s https://corona-stats.online/states/us'
 
-    /bin/rm -f ~/.trash/latest
-    ln -s $DIR ~/.trash/latest
-}
 
 if [ "$(uname)" == "Darwin" ]; then
 # Do something under Mac OS X platform
@@ -166,3 +158,4 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
+fortune | pokemonsay
