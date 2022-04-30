@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 zmodload zsh/zprof
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -6,7 +13,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="muse"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -25,7 +32,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 PS1="%{\$PROMPT_SUCCESS_COLOR%}% %{\$reset_color%}% $PS1"
 
 # Customize to your needs...
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:$HOME/Library/bin:$PATH"
+export PATH="/opt/homebrew/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:$HOME/Library/bin:/opt/homebrew/bin:$PATH"
 
 # rvm configuration
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -37,7 +44,10 @@ alias vi='vim'
 alias jn='jupyter notebook'
 alias ...='cd ../..'
 alias vstart='source venv/bin/activate; source .env; python app.py'
+alias brew='/opt/homebrew/bin/brew'
+alias oldbrew='/usr/local/bin/brew'
 
+alias g='git'
 alias ga='git add'
 alias gaa='git add .'
 alias gc='git commit'
@@ -48,8 +58,6 @@ alias pg-start="pg_ctl -D /usr/local/var/postgres start"
 alias pg-stop="pg_ctl -D /usr/local/var/postgres stop"
 alias pg-restart="pg_ctl -D /usr/local/var/postgres restart"
 
-alias corona='curl -s https://corona-stats.online/'
-alias corona-us='curl -s https://corona-stats.online/states/us'
 
 function mkcd {
   dir="$*";
@@ -134,12 +142,14 @@ group_lazy_load "$HOME/.pyenv/init.zsh" pyenv python python3 pip pip3 jupyter
 
 unset -f group_lazy_load
 
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+#export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+#export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 
 alias java8='export JAVA_HOME=$JAVA_8_HOME'
 alias java11='export JAVA_HOME=$JAVA_11_HOME'
 
 fortune | pokemonsay
 # fortune | say & disown
-# fortune | cowsay -f $(ls /usr/local/Cellar/cowsay/3.04/share/cows/ | shuf -n 1) | lolcat
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

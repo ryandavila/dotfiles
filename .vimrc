@@ -23,7 +23,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/DrawIt'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --js-completer --java-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --js-completer --system-libclang' }
 Plug 'joshdick/onedark.vim'
 call plug#end()
 
