@@ -44,7 +44,10 @@ alias ...='cd ../..'
 alias ..='cd ..'
 alias vi=vim
 alias l='ls -lF'
+alias brew='/opt/homebrew/bin/brew'
+alias oldbrew='/usr/local/bin/brew'
 
+alias g='git'
 alias ga='git add'
 alias gaa='git add .'
 alias gc='git commit'
@@ -52,11 +55,8 @@ alias gcm='git commit -m'
 alias gss='git status'
 alias gk='gitk --all'
 
-alias pgstart='pg_ctl -D /usr/local/var/postgres start'
-alias pgstop='pg_ctl -D /usr/local/var/postgres stop'
-
-alias corona='curl -s https://corona-stats.online?top=25'
-alias corona-us='curl -s https://corona-stats.online/states/us'
+alias pgstart='brew services start postgresql'
+alias pgstop='brew services start postgresql'
 
 
 if [ "$(uname)" == "Darwin" ]; then
@@ -141,8 +141,6 @@ if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
 fi
 
-#export LC_CTYPE=C
-#export LANG=C
 export EDITOR=vim
 
 bind '"\e[A": history-search-backward'
@@ -151,11 +149,26 @@ bind '"\eOA": history-search-backward'
 bind '"\eOB": history-search-forward'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/.rvm/bin:/opt/homebrew/bin"
+
+export PATH="/opt/homebrew/bin:"$PATH
+export PATH=$(pyenv root)/shims:$PATH
+
+eval "$(fnm env --use-on-cd)"
 
 # Add colors to Terminal
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# For psycopg2 install in pip
+# For compilers to find openssl@1.1 you may need to set:
+export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
+
+# For pkg-config to find openssl@1.1 you may need to set:
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 fortune | pokemonsay
