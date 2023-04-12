@@ -31,7 +31,12 @@ yabai -m mouse_drop_action swap
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Messages$" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
+yabai -m rule --add app="^Discord$" manage=off
+yabai -m rule --add app="^Messenger$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^JetBrains Toolbox$" manage=off
+yabai -m rule --add app="^JetBrains Gateway$" manage=off
 yabai -m rule --add app="^QuickTime Player$" manage=off
 yabai -m rule --add app="^Mail$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
