@@ -34,6 +34,9 @@ yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Discord$" manage=off
 yabai -m rule --add app="^Messenger$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^1Password$" manage=off
+yabai -m rule --add app="^Vimari$" manage=off
+yabai -m rule --add app="^Wally$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
 yabai -m rule --add app="^JetBrains Toolbox$" manage=off
 yabai -m rule --add app="^JetBrains Gateway$" manage=off
